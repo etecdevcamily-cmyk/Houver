@@ -1,18 +1,147 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo de Cartas</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escolha uma Carta</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
+    body {
+      min-height: 100vh;
+      background: #000000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #ffffff;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .instrucao {
+      margin-bottom: 50px;
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      color: #9ca3af;
+      transition: color 0.3s;
+    }
+
+    /* Container do baralho */
+    .baralho {
+      position: relative;
+      width: 420px;
+      height: 320px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Estilo base das cartas */
+    .carta {
+      position: absolute;
+      width: 190px;
+      height: 270px;
+      border-radius: 22px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.45s ease,
+                  z-index 0s 0.1s;
+      transform-origin: bottom center;
+      text-decoration: none;
+    }
+
+    .carta span {
+      color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Carta 1: Vermelho / Laranja vibrante */
+    .carta-1 {
+      background: linear-gradient(145deg, #ff5722, #e60026);
+      transform: rotate(-14deg) translate(-50px, 10px);
+      z-index: 1;
+    }
+
+    /* Carta 2: Ciano / Turquesa */
+    .carta-2 {
+      background: linear-gradient(145deg, #00f5d4, #00b4d8);
+      transform: rotate(0deg) translate(0, 0);
+      z-index: 2;
+    }
+
+    /* Carta 3: Roxo / Azul degradê */
+    .carta-3 {
+      background: linear-gradient(145deg, #7b2cbf, #2563eb);
+      transform: rotate(14deg) translate(50px, 10px);
+      z-index: 3;
+    }
+
+    /* Efeito de abertura suave ao passar no container */
+    .baralho:hover .carta-1 {
+      transform: rotate(-22deg) translate(-80px, 15px);
+    }
+    .baralho:hover .carta-3 {
+      transform: rotate(22deg) translate(80px, 15px);
+    }
+
+    /* Efeito ao focar/passar o mouse em UMA carta específica */
+    .carta:hover {
+      z-index: 10 !important;
+      transform: translateY(-40px) scale(1.08) rotate(0deg) !important;
+    }
+
+    .carta-1:hover {
+      box-shadow: 0 20px 45px rgba(255, 75, 43, 0.65);
+    }
+
+    .carta-2:hover {
+      box-shadow: 0 20px 45px rgba(0, 245, 212, 0.65);
+    }
+
+    .carta-3:hover {
+      box-shadow: 0 20px 45px rgba(123, 44, 191, 0.7);
+    }
+
+    /* Animação de clique rápido */
+    .carta:active {
+      transform: translateY(-25px) scale(1.02) !important;
+    }
+  </style>
+</head>
 <body>
-    <div class="stack">
-        <div class="card 1">Design</div>
-        <div class="card 2">Build</div>
-        <div class="card 3">Ship</div>
-    </div>
-    
+
+  <p class="instrucao">Passe o mouse ou toque para escolher uma carta ✨</p>
+
+  <div class="baralho">
+    <!-- Carta 1 -->
+    <a href="carta-1.html" class="carta carta-1">
+      <span>Design</span>
+    </a>
+
+    <!-- Carta 2 -->
+    <a href="carta-2.html" class="carta carta-2">
+      <span>Build</span>
+    </a>
+
+    <!-- Carta 3 -->
+    <a href="carta-3.html" class="carta carta-3">
+      <span>Ship</span>
+    </a>
+  </div>
+
 </body>
 </html>

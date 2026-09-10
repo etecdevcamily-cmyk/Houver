@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build - Construção</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at center, #022026 0%, #01080a 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: #fff;
+      padding: 20px;
+    }
+
+    .cartao {
+      max-width: 500px;
+      width: 100%;
+      background: rgba(0, 245, 212, 0.08);
+      border: 1px solid rgba(0, 245, 212, 0.35);
+      backdrop-filter: blur(14px);
+      border-radius: 24px;
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: 0 0 50px rgba(0, 245, 212, 0.25);
+      animation: subir 0.6s ease-out;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 16px;
+      background: #00f5d4;
+      color: #012a2e;
+      border-radius: 99px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 245, 212, 0.4);
+    }
+
+    h1 {
+      font-size: 2.1rem;
+      margin-bottom: 16px;
+      color: #e0fbf7;
+    }
+
+    p {
+      color: #99f6e4;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .btn-voltar {
+      display: inline-block;
+      padding: 12px 28px;
+      background: linear-gradient(135deg, #00f5d4, #00b4d8);
+      color: #012a2e;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-voltar:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 245, 212, 0.5);
+    }
+
+    @keyframes subir {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="cartao">
+    <div class="tag">Build</div>
+    <h1>Construindo Memórias</h1>
+    <p>As melhores histórias não acontecem por acaso: elas são construídas dia após dia, com paciência, cumplicidade e muito afeto.</p>
+    <a href="index.html" class="btn-voltar">← Voltar às cartas</a>
+  </div>
+</body>
+</html>
