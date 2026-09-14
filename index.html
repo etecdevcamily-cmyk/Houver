@@ -11,10 +11,10 @@
   padding: 0;
 }
 
-/* Fundo estilizado com gradiente radial profundo e vinheta suave */
+/* Fundo com atmosfera sensual: vinho escuro, bordô e preto veludo */
 body {
   min-height: 100vh;
-  background: radial-gradient(circle at 50% 45%, #131b2e 0%, #070a12 60%, #020307 100%);
+  background: radial-gradient(circle at 50% 45%, #2a0312 0%, #150209 50%, #050003 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,29 +26,41 @@ body {
   position: relative;
 }
 
-/* Brilho ambiente sutil atrás das cartas */
+/* Névoa de luz sedutora e pulsante atrás das cartas */
 body::before {
   content: "";
   position: absolute;
-  width: 650px;
-  height: 400px;
-  background: radial-gradient(ellipse, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.08) 40%, transparent 70%);
-  filter: blur(50px);
+  width: 700px;
+  height: 460px;
+  background: radial-gradient(ellipse at center, rgba(236, 17, 97, 0.22) 0%, rgba(147, 12, 70, 0.14) 40%, rgba(50, 2, 22, 0.05) 70%, transparent 80%);
+  filter: blur(55px);
+  pointer-events: none;
+  animation: pulsarAura 4s ease-in-out infinite alternate;
+}
+
+/* Textura suave de vinheta lateral */
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.65) 100%);
   pointer-events: none;
 }
 
 .instrucao {
   margin-bottom: 55px;
-  font-size: 1.2rem;
-  letter-spacing: 1.5px;
+  font-size: 1.25rem;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   font-weight: 600;
-  color: #cbd5e1;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  color: #ffccd8;
+  text-shadow: 0 0 18px rgba(255, 30, 105, 0.6), 0 2px 10px rgba(0, 0, 0, 0.9);
+  position: relative;
+  z-index: 2;
   transition: color 0.3s;
 }
 
-/* Container do baralho ajustado para as 6 cartas */
+/* Container do baralho */
 .baralho {
   position: relative;
   width: 520px;
@@ -56,6 +68,7 @@ body::before {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 /* Estilo base das cartas (inalterado) */
@@ -69,12 +82,13 @@ body::before {
   flex-direction: column;
   justify-content: flex-end;
   padding: 24px 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85);
   transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
               box-shadow 0.45s ease,
               z-index 0s 0.1s;
   transform-origin: bottom center;
   text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .carta span {
@@ -82,7 +96,7 @@ body::before {
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.5px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* --- AS 3 CARTAS ORIGINAIS (MANTIDAS) --- */
@@ -108,7 +122,7 @@ body::before {
   z-index: 3;
 }
 
-/* --- AS 3 NOVAS CARTAS (MESMO PADRÃO E CORES DIFERENTES) --- */
+/* --- AS OUTRAS 3 CARTAS --- */
 
 /* Carta 4: Dourado / Âmbar vibrante */
 .carta-4 {
@@ -142,26 +156,38 @@ body::before {
 /* Efeito ao focar/passar o mouse em UMA carta específica */
 .carta:hover {
   z-index: 20 !important;
-  transform: translateY(-40px) scale(1.08) rotate(0deg) !important;
+  transform: translateY(-42px) scale(1.08) rotate(0deg) !important;
 }
 
 /* Brilhos (glow) de cada carta ao passar o mouse */
-.carta-1:hover { box-shadow: 0 20px 45px #141ffba6; }
-.carta-2:hover { box-shadow: 0 20px 45px #0093f5a6; }
-.carta-3:hover { box-shadow: 0 20px 45px #9131e6b3; }
-.carta-4:hover { box-shadow: 0 20px 45px #ffb300b3; }
-.carta-5:hover { box-shadow: 0 20px 45px #05f886b3; }
-.carta-6:hover { box-shadow: 0 20px 45px #ff1493b3; }
+.carta-1:hover { box-shadow: 0 20px 50px rgba(230, 0, 38, 0.75); }
+.carta-2:hover { box-shadow: 0 20px 50px rgba(0, 180, 216, 0.75); }
+.carta-3:hover { box-shadow: 0 20px 50px rgba(123, 44, 191, 0.8); }
+.carta-4:hover { box-shadow: 0 20px 50px rgba(255, 170, 0, 0.75); }
+.carta-5:hover { box-shadow: 0 20px 50px rgba(5, 248, 134, 0.75); }
+.carta-6:hover { box-shadow: 0 20px 50px rgba(255, 20, 147, 0.85); }
 
 /* Animação de clique rápido */
 .carta:active {
   transform: translateY(-25px) scale(1.02) !important;
 }
+
+/* Respiração da aura misteriosa de fundo */
+@keyframes pulsarAura {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
 </style>
 </head>
 <body>
 
-<p class="instrucao">Escolha uma carta 🤔</p>
+<p class="instrucao">Escolha uma carta ✨</p>
 
 <div class="baralho">
   <!-- Carta 1 -->
