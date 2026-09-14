@@ -11,7 +11,7 @@
   padding: 0;
 }
 
-/* Fundo com atmosfera sensual: vinho escuro, bordô e preto veludo */
+/* Fundo com atmosfera sensual */
 body {
   min-height: 100vh;
   background: radial-gradient(circle at 50% 45%, #2a0312 0%, #150209 50%, #050003 100%);
@@ -35,7 +35,7 @@ body::before {
   background: radial-gradient(ellipse at center, rgba(236, 17, 97, 0.22) 0%, rgba(147, 12, 70, 0.14) 40%, rgba(50, 2, 22, 0.05) 70%, transparent 80%);
   filter: blur(55px);
   pointer-events: none;
-  animation: pulsarAura 4s ease-in-out infinite alternate;
+  animation: pulsarAura 5s ease-in-out infinite alternate;
 }
 
 /* Textura suave de vinheta lateral */
@@ -57,7 +57,6 @@ body::after {
   text-shadow: 0 0 18px rgba(255, 30, 105, 0.6), 0 2px 10px rgba(0, 0, 0, 0.9);
   position: relative;
   z-index: 2;
-  transition: color 0.3s;
 }
 
 /* Container do baralho */
@@ -71,7 +70,7 @@ body::after {
   z-index: 2;
 }
 
-/* Estilo base das cartas (inalterado) */
+/* Estilo base das cartas com transição mais lenta e suave */
 .carta {
   position: absolute;
   width: 190px;
@@ -81,107 +80,92 @@ body::after {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: center;
   padding: 24px 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85);
-  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-              box-shadow 0.45s ease,
-              z-index 0s 0.1s;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+  /* Velocidade reduzida e amortecida para não dar solavanco */
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.7s ease;
   transform-origin: bottom center;
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transform: rotate(var(--rot)) translate(var(--tx), var(--ty));
 }
 
+/* Emojis */
 .carta span {
-  color: #ffffff;
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  font-size: 2.4rem;
+  line-height: 1;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+  transition: transform 0.7s ease;
+  pointer-events: none;
 }
 
-/* --- AS 3 CARTAS ORIGINAIS (MANTIDAS) --- */
-
-/* Carta 1: Vermelho / Laranja vibrante */
+/* Posições fixas e calibradas em variáveis para não perder o mouse */
 .carta-1 {
+  --rot: -22deg; --tx: -130px; --ty: 18px;
   background: linear-gradient(145deg, #3489f8, #007efb);
-  transform: rotate(-25deg) translate(-125px, 20px);
   z-index: 1;
 }
 
-/* Carta 2: Ciano / Turquesa */
 .carta-2 {
+  --rot: -13deg; --tx: -78px; --ty: 9px;
   background: linear-gradient(145deg, #008bf5, #00b4d8);
-  transform: rotate(-15deg) translate(-75px, 10px);
   z-index: 2;
 }
 
-/* Carta 3: Roxo / Azul degradê */
 .carta-3 {
+  --rot: -4deg; --tx: -26px; --ty: 2px;
   background: linear-gradient(145deg, hsl(0, 100%, 50%), #790d0d);
-  transform: rotate(-5deg) translate(-25px, 2px);
   z-index: 3;
 }
 
-/* --- AS OUTRAS 3 CARTAS --- */
-
-/* Carta 4: Dourado / Âmbar vibrante */
 .carta-4 {
+  --rot: 4deg; --tx: 26px; --ty: 2px;
   background: linear-gradient(145deg, hsl(273, 100%, 50%), #49037e);
-  transform: rotate(5deg) translate(25px, 2px);
   z-index: 4;
 }
 
-/* Carta 5: Verde Esmeralda / Menta Neon */
 .carta-5 {
+  --rot: 13deg; --tx: 78px; --ty: 9px;
   background: linear-gradient(145deg, #f8056a, #61054b);
-  transform: rotate(15deg) translate(75px, 10px);
   z-index: 5;
 }
 
-/* Carta 6: Magenta / Rosa Choque */
 .carta-6 {
+  --rot: 22deg; --tx: 130px; --ty: 18px;
   background: linear-gradient(145deg, #4442e0, #1d00fc);
-  transform: rotate(25deg) translate(125px, 20px);
   z-index: 6;
 }
 
-/* Abertura suave em leque das 6 cartas ao passar o mouse no container */
-.baralho:hover .carta-1 { transform: rotate(-32deg) translate(-170px, 30px); }
-.baralho:hover .carta-2 { transform: rotate(-20deg) translate(-105px, 15px); }
-.baralho:hover .carta-3 { transform: rotate(-7deg) translate(-35px, 3px); }
-.baralho:hover .carta-4 { transform: rotate(7deg) translate(35px, 3px); }
-.baralho:hover .carta-5 { transform: rotate(20deg) translate(105px, 15px); }
-.baralho:hover .carta-6 { transform: rotate(32deg) translate(170px, 30px); }
-
-/* Efeito ao focar/passar o mouse em UMA carta específica */
+/* Efeito ao passar o mouse: a carta levanta de forma suave sem fugir do ponteiro */
 .carta:hover {
-  z-index: 20 !important;
-  transform: translateY(-42px) scale(1.08) rotate(0deg) !important;
+  z-index: 25 !important;
+  transform: rotate(var(--rot)) translate(var(--tx), calc(var(--ty) - 26px)) scale(1.05) !important;
 }
 
-/* Brilhos (glow) de cada carta ao passar o mouse */
-.carta-1:hover { box-shadow: 0 20px 50px rgba(230, 0, 38, 0.75); }
-.carta-2:hover { box-shadow: 0 20px 50px rgba(0, 180, 216, 0.75); }
-.carta-3:hover { box-shadow: 0 20px 50px rgba(123, 44, 191, 0.8); }
-.carta-4:hover { box-shadow: 0 20px 50px rgba(255, 170, 0, 0.75); }
-.carta-5:hover { box-shadow: 0 20px 50px rgba(5, 248, 134, 0.75); }
-.carta-6:hover { box-shadow: 0 20px 50px rgba(255, 20, 147, 0.85); }
+.carta:hover span {
+  transform: scale(1.12);
+}
 
-/* Animação de clique rápido */
+/* Brilhos suaves ao focar */
+.carta-1:hover { box-shadow: 0 16px 40px rgba(0, 126, 251, 0.7); }
+.carta-2:hover { box-shadow: 0 16px 40px rgba(0, 180, 216, 0.7); }
+.carta-3:hover { box-shadow: 0 16px 40px rgba(255, 0, 0, 0.7); }
+.carta-4:hover { box-shadow: 0 16px 40px rgba(187, 0, 255, 0.7); }
+.carta-5:hover { box-shadow: 0 16px 40px rgba(248, 5, 106, 0.75); }
+.carta-6:hover { box-shadow: 0 16px 40px rgba(68, 66, 224, 0.75); }
+
+/* Clique firme e direto */
 .carta:active {
-  transform: translateY(-25px) scale(1.02) !important;
+  transform: rotate(var(--rot)) translate(var(--tx), calc(var(--ty) - 12px)) scale(1.02) !important;
+  transition: transform 0.15s ease;
 }
 
-/* Respiração da aura misteriosa de fundo */
+/* Pulsação lenta da luz de fundo */
 @keyframes pulsarAura {
-  0% {
-    transform: scale(0.95);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1.08);
-    opacity: 1;
-  }
+  0% { transform: scale(0.96); opacity: 0.75; }
+  100% { transform: scale(1.04); opacity: 0.95; }
 }
 </style>
 </head>
